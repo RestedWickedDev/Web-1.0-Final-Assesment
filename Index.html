@@ -1,0 +1,167 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>J. David Perez-Sandoval - Final - Web 1.0</title>
+  <style>
+      body {
+          display: flex;
+          font-family: monospace;
+          background-color: #16db93;
+      }
+      .column {
+          margin: 2%;
+          flex: 50%;
+      }
+      #data-input {
+          padding: 3%;
+          border: 20px;
+          border-color: #2c699a;
+          border-style: groove;
+          border-radius: 3em 0em 3em 0em;
+          display: flex;
+          flex-direction: column;
+      }
+      #data-input label {
+          text-align: center;
+          font-family: monospace;
+          font-style: italic;
+          font-size: 1.5em;
+          
+      }
+      #headline-display {
+          border: 1em;
+          border-style: groove;
+          border-color: #2c699a;
+          text-align: center;
+      }
+  </style>
+</head>
+
+<body>
+
+    <div class="column">
+    <div id="student-info">
+        <h1>J. David Perez-Sandoval</h1>
+        <p>My favorite color is Teal and I wear boots</p>
+    </div>
+
+    <div id="data-input">
+        <h1>Font Styler</h1>
+        
+        <label>Font Size</label>
+        <input id="input-size" type="number">
+
+        <label>Font Weight</label>
+        <select id="select-weight">
+            <option>Bold</option>
+            <option>Bolder</option>
+            <option>Normal</option>
+            <option>Lighter</option>
+        </select>
+
+        <label>Font Style</label>
+        <select id="select-style">
+            <option>Normal</option>
+            <option>Italic</option>
+            <option>Oblique</option>
+        </select>
+
+        <label>Font Family</label>
+        <select id="select-font">
+            <option>Helvetica</option>
+            <option>Arial</option>
+            <option>Times New Roman</option>
+            <option>Georgia</option>
+        </select>
+
+        <label>Font Color</label>
+        <input id="input-color" type="color" value="#000000">
+
+        <label>Background Color</label>
+        <input id="input-bg-color" type="color" value="#ffffff">
+
+        <label>Enter Text</label>
+        <textarea id="enter-text">Sample Text</textarea>
+
+    </div>
+    </div>
+
+    <div class="column">
+    <div id="headline-display">
+        <h1 id="display">Sample Text</h1>
+    </div>
+
+    <div id="data-output">
+        <pre><code>.headline {
+            font-size: <span id="show-size">16</span>px;
+            font-weight: <span id="show-weight">normal</span>;
+            font-style: <span id="show-style">normal</span>;
+	        font-family: <span id="show-font">Times</span>;
+	        color: <span id="show-color">#000</span>;
+	        background-color: <span id="show-bg-color">#fff</span>   
+        }</code></pre>
+    </div>
+    </div>
+    <script>
+        const headline = document.querySelector('#headline-display')
+        const display = document.querySelector('#display')
+        const inputText = document.querySelector('#enter-text')
+
+        const inputSize = document.querySelector('#input-size')
+        const showSize = document.querySelector('#show-size')
+        const selectWeight = document.querySelector('#select-weight')
+        const showWeight = document.querySelector('#show-weight')
+        const selectStyle = document.querySelector('#select-style')
+        const showStyle = document.querySelector('#show-style')
+        const selectFont = document.querySelector('#select-font')
+        const showFont = document.querySelector('#show-font')
+        const inputColor = document.querySelector('#input-color')
+        const showColor = document.querySelector('#show-color')
+        const inputBgColor = document.querySelector('#input-bg-color')
+        const showBgColor = document.querySelector('#show-bg-color')
+
+        inputSize.addEventListener('input', handleInput)
+        selectWeight.addEventListener('input', handleInput)
+        selectStyle.addEventListener('input', handleInput)
+        selectFont.addEventListener('input', handleInput)
+        inputColor.addEventListener('input', handleInput)
+        inputBgColor.addEventListener('input', handleInput)
+        inputText.addEventListener('input', handleInput)
+        
+
+        function handleInput() {
+            const fontSize = inputSize.value
+            const actualFontSize = fontSize.concat("px")
+            display.style.fontSize = actualFontSize
+            showSize.innerHTML = fontSize
+            
+            const fontWeight = selectWeight.value
+            display.style.fontWeight = fontWeight
+            showWeight.innerHTML = fontWeight
+
+            const fontStyle = selectStyle.value
+            display.style.fontStyle = fontStyle
+            showStyle.innerHTML = fontStyle
+
+            const fontFamily = selectFont.value
+            display.style.fontFamily = fontFamily
+            showFont.innerHTML = fontFamily
+            
+            const fontColor = inputColor.value
+            display.style.color = fontColor
+            showColor.innerHTML = fontColor
+
+            const bgColor = inputBgColor.value
+            headline.style.backgroundColor = bgColor
+            showBgColor.innerHTML = bgColor
+
+            const displayText = inputText.value
+            display.innerHTML = displayText
+
+        }
+    </script>
+</body>
+</html>
